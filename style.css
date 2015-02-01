@@ -1,0 +1,109 @@
+/*
+@import url(http://fonts.googleapis.com/css?family=Lobster+Two:700);
+@import url(http://fonts.googleapis.com/css?family=Risque|Monoton|Metal+Mania|Baumans|Comfortaa|Revalia|Righteous|Nova+Script|Audiowide|Faster+One);
+*/
+
+/*
+font-family: 'Risque', cursive;
+font-family: 'Monoton', cursive;
+font-family: 'Metal Mania', cursive;
+font-family: 'Baumans', cursive;
+font-family: 'Comfortaa', cursive;
+font-family: 'Revalia', cursive;
+font-family: 'Righteous', cursive;
+font-family: 'Nova Script', cursive;
+font-family: 'Audiowide', cursive;
+font-family: 'Faster One', cursive;
+*/
+
+html, body {
+	margin: 0px;
+	padding 0px;
+}
+.logo {
+   position:fixed; 
+    top:0.5em;
+    left:0.5em;
+}
+.logo a{
+	text-shadow: 2px 2px 3px #000, 1px 3px 5px #263954;
+font-family: 'Audiowide', cursive;
+	color:white;
+	font-size:3em;
+	text-decoration: none;
+}
+.menu, .menu ul{
+	list-style:none outside none;
+}
+.menu a {
+	color:white;
+	text-shadow: 2px 2px 3px #000, 1px 3px 5px #263954;
+	font-family: 'Audiowide', cursive;
+	text-decoration: none;
+	border: 0.002em transparent solid;
+	animation-duration: 0.4s;
+	animation-name: menuRelease;
+
+}
+
+.menu a:hover{
+	color: #98b1f6;
+	text-shadow: 2px 2px 3px #000, 1px 3px 5px #263954;
+    padding-left:0.5em;
+	animation-duration: 1s;
+	animation-name: menuSelect;
+}
+
+ 
+@keyframes menuSelect {
+  from {
+    padding-left:0em;
+	color:white;
+
+  }
+ 
+  to {
+    padding-left:0.5em;
+	color: #98b1f6;
+  }
+}
+@keyframes menuRelease {
+  from {
+    padding-left:0.5em;
+	color: #98b1f6;
+
+  }
+ 
+  to {
+    padding-left:0em;
+	color:white;
+  }
+}
+.subTitle {
+font-size: 0.4em;
+margin-top:-0.8em;
+}
+
+.hidden {
+	visibility: hidden;
+	width:0px;
+	height:0px;
+	float:left;
+}
+.carlist {
+	visibility: hidden;
+	width:0px;
+	height:0px;
+}
+.carSelection{
+	visibility: hidden;
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+.prevnext{
+	background-color:black;
+}
+.prevnext:hover{
+	background-color:grey;
+}

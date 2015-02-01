@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title>SpeeDreamsOnTheNet - Demo</title>
+        <meta name="description" content="">
+
+        <link rel="stylesheet" href="style.css">
+        <!--
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		-->
+        <script src="./libs/xml2json.js"></script>
+        <script>
+			var x2js = new X2JS({
+				attributePrefix : '',
+				//arrayAccessForm : "property"
+			});
+		</script>
+        <script src="./libs/cannon.js"></script>
+        <script src="./libs/three.min.js"></script>
+        <script src="./libs/FirstPersonControls.js"></script>
+        <script src="./libs/AC3DLoader.js"></script>
+        <script src="./libs/class.js"></script>
+		<script src="./module.class.js"></script>
+		<script src="./ModuleInput.js"></script>
+		<script src="./ModuleGraphic.js"></script>
+		<script src="./ModulePhisic.js"></script>
+		<script src="./ModuleMenu.js"></script>
+		<script src="./ModuleSound.js"></script>
+        <script src="./main.js"></script>
+        <script src="./utils.js"></script>
+    </head>
+    <body style="background-color:#e1e1e1">
+ <div class="carSelection">
+ <table>
+ <tr>
+	<td><a id="prev" class="prevnext" height="500px">< Prev</a></td>
+	<td><div id="carName"></div><span id="carImage"><img width="400" height="250" src=""></span></td>
+	<td><a id="next" class="prevnext" height="500px">Next ></a></td>
+</tr>	
+</table>
+<a id="close" class="prevnext" height="500px">Hide</a>
+ </div>
+	<script>
+		/*
+		y = altezza (alto basso)
+		x = profondita (avanti indietro)
+		z = larghezza (sx dx)
+		*/
+		var myGame = new Game;
+		
+		var carSelection = document.querySelector('.carSelection');
+		carSelection.hide = function(){
+			carSelection.loadCar();
+			this.style.visibility= 'hidden';
+		}
+		carSelection.show = function(){
+			this.style.visibility= 'visible';
+		}
+		carSelection.loadCar = function(){
+			carList.load();
+		}
+		var prev = document.querySelector('#prev');
+		var next = document.querySelector('#next');
+		var close = document.querySelector('#close');
+		prev.onclick = function(){
+			carList.prev()
+		}
+		next.onclick = function(){
+			carList.next()
+		}
+		close.onclick = function(){
+			carSelection.hide();
+		}
+	</script>
+	
+	
+	<div class="logo">
+		<a href="javascript: myGame.toggleMenu()">
+<!--
+		<div>
+		<span style="color:#2e53bd">\</span><span style="color:#98b1f6">\</span><span style="color:#ffffff">\</span>	
+		<span style="color:#2e53bd">E N</span>
+		<span style="color:#98b1f6">E R</span>
+		<span style="color:#ffffff">G Y</span>
+		</div>
+		<div class="subTitle"> 
+			<span style="color:#2e53bd; font-size:0.8em;">|||||||||||||||||||||||||||||||||||||||</span><span style="color:#98b1f6; font-size:0.8em;"> Racing Game </span><span style="color:#ffffff; font-size:0.8em;">|||||||||||||||||||||||||||||||||||||||</span>
+		</div>
+-->
+		</a>
+		<ul class="menu hidden">
+			<li><a href="javascript: myGame.toggleMenu()">New Race</a>
+				<ul>
+					<li><a href="">Practice</a></li>
+					<li><a href="">Single Race</a></li>
+					<li><a href="">Championship</a></li>
+					<li><a href="">Time trial</a></li>
+				</ul>
+			</li>
+			<li><a href="">Configure Controls</a></li>
+			<li><a href="">Graphics Options</a></li>
+			<li><a href="">Credits</a></li>
+			<li><a href="javascript: carSelection.show(); myGame.toggleMenu();">Add Car</a></li>
+		</ul>
+	</div>
+	
+	<div class="carlist"> 36gp-century-r11b
+ 36gp-ettore-t59
+ 36gp-milano-12c36
+ 36gp-milano-tipop3
+ 36gp-motorunion-ty
+ 36gp-silber-w25b
+ 36gp-tridenti-6c34
+ 36gp-tridenti-v8ri
+ gtc-aichi-aidoru
+ lancer09-wr
+ lp1-lolita-exr57
+ lp1-luxura-lp02
+ lp1-pescy-p60
+ lp1-spire-s101
+ lp1-sprite-p1rs
+ lp1-vieringe-vr8
+ lp2-bravery-brc6
+ lp2-lolita-exr57
+ lp2-spire-s101
+ ls1-archer-r9
+ ls1-cavallo-570s1
+ ls1-marisatech-gt4
+ ls1-newcastle-fury
+ ls1-taipan-ltsr
+ ls1-toro-rgt
+ ls1-vulture-v6r
+ ls1-zentek-z7r
+ ls2-bavaria-g3gtr
+ ls2-bavaria-nb
+ ls2-boxer-96rsr
+ ls2-cavallo-360r
+ ls2-condor-c400r
+ ls2-lynx-xkr
+ ls2-morley-r900
+ ls2-sprite-gts
+ ls2-vortex-gt
+ ls2-vulture-v6rs2
+ mp1-cavallo-tr06
+ mp1-diamond-d25
+ mp1-vicente
+ mp10-agl-kart
+ mp10-sdr-kart125
+ mp10-tuxkart
+ mp5-fmc
+ mp5-fmc-drift
+ mp5-fmc-speedy
+ mpa1-ffr
+ mpa1-furia
+ mpa1-hartbill-2002
+ mpa1-murasama
+ mpa1-team-lynx
+ nascar-car1
+ nascar-car2
+ ref-boxer-gt3-rs-2
+ ref-sector-p4
+ rs1-citrus-cs4
+ rs1-fmc-centre
+ rs1-kenji-08
+ rs2-fai-dot
+ rs2-lion-2m
+ sc-boxer-96
+ sc-cavallo-360
+ sc-fmc-gt4
+ sc-kanagawa-z35gts
+ sc-kongei-kk8s
+ sc-lynx-220
+ sc-murasama-nsx
+ sc-spirit-300
+ trb1-boxer-trbrs
+ trb1-cavallo-360rb
+ trb1-sector-rb1
+ trb1-silber-rblk
+ trb1-spirit-rb1lt
+ trb1-taipan-rb1
+ trb1-vieringe-5rb
+ trb1-zaxxon-rb</div>
+
+
+ 
+	<script>
+	
+	myGame.addTrack('circuit', 'espie');
+	//myGame.addTrack('circuit', 'migrants');
+//	myGame.addTrack('circuit', 'forza');
+
+	carList = {
+		cars: document.querySelector('.carlist').textContent.split('\n '),
+		selection:0,
+		next:function(){
+			this.unload(this.selection);
+			this.selection++;
+			//this.load(this.selection);
+			this.select(this.selection);
+		},
+		prev:function(){
+			this.unload(this.selection);
+			this.selection--;
+			this.load(this.selection);
+			this.select(this.selection);		
+		},
+		select:function(id){
+			document.querySelector('#carName').innerHTML = this.cars[id];
+			document.querySelector('#carImage').innerHTML = '<img width="400" height="250" src="./data/cars/models/'+this.cars[id]+'/'+this.cars[id]+'-preview.jpg">';
+		},
+		load:function(id){
+			if(id){
+				myGame.addCar(this.cars[id]);			
+			}else{
+				myGame.addCar(this.cars[this.selection]);
+			}
+		},
+		unload:function(id){
+			//myGame.remove(this.cars[id]);		
+		},
+	};
+	//carList.select(0);
+	//carList.load(0);
+
+/*	
+	var cicle=0;
+	myGame.loadNextCar = function (){
+		//var index=60;
+		var howMany=1;
+		var startFrom=60;
+		for (var i=0; i<howMany; i++){
+			var carName = myGame.carNamesList[startFrom+i];
+			var carIndex = myGame.addCar(carName);
+			//console.log(carIndex);
+			//myGame.modules.graphic.loadQueque[carIndex.gfx].position.z= i*3;
+		}
+	}
+*/
+	//myGame.loadNextCar();
+	</script>
+    </body>
+</html>
