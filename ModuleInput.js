@@ -234,16 +234,47 @@ var InputModule  =  Module.extend({
 var gameMode='race';
 	switch (gameMode){
 		case 'race':
-			var camera = this.game.modules.graphic.camera;
+			//##################################
+			//  CAMERA
+			//##################################
+			//eable-disable free camera mouvements 
+			this.$('m').description ='Enable or disable free camera movements';
+			if( this.$('m').pressed && this.$('m').statusHasChanged()){
+				this.game.modules.graphic.cameraMovementsEnabled = !this.game.modules.graphic.cameraMovementsEnabled;
+			}
 
-//change the speed of the camera when we press shift
-if( this.$('shift').pressed && this.$('shift').statusHasChanged()){
-	this.game.modules.graphic.controls.movementSpeed = 160;
-}
-if( !this.$('shift').pressed && this.$('shift').statusHasChanged()){
-	this.game.modules.graphic.controls.movementSpeed = 40;
-}
+			//change the speed of the camera when we press shift
+			if( this.$('shift').pressed && this.$('shift').statusHasChanged()){
+				this.game.modules.graphic.controls.movementSpeed = 160;
+			}
+			if( !this.$('shift').pressed && this.$('shift').statusHasChanged()){
+				this.game.modules.graphic.controls.movementSpeed = 40;
+			}
 			
+			//##################################
+			//  HELP MENU
+			//##################################			
+			this.$('f1').description ='Enable help menu';
+			if( this.$('f1').pressed){
+					var out='';
+				for (var i = 0; i < this.keys.length; i++) {
+					console.log(this.keys.length);
+					var key= this.keys[i];
+					if(key){
+
+					//if(key.description){
+						out= key.name + ' = '+key.description+'<br>';
+					//}						
+						}
+
+				}
+				alert(out);
+			}			
+			
+			//##################################
+			//  MISC
+			//##################################
+			//other things
 			if( this.$('i').pressed){
 				this.game.modules.phisic.objects[0].psx.velocity.set(  2,
 									   0,
@@ -265,33 +296,6 @@ if( !this.$('shift').pressed && this.$('shift').statusHasChanged()){
 			if( this.$('l').pressed){
 			}
 
-			this.$('escape').description ='Toggle menu status';
-			if( this.$('escape').pressed && this.$('escape').statusHasChanged()){
-				this.game.toggleMenu();
-			}
-			
-
-			this.$('m').description ='Enable or disable free camera movements';
-			if( this.$('m').pressed){
-				this.game.modules.graphic.cameraMovementsEnabled = !this.game.modules.graphic.cameraMovementsEnabled;
-			}
-
-			this.$('f1').description ='Enable help menu';
-			if( this.$('f1').pressed){
-					var out='';
-				for (var i = 0; i < this.keys.length; i++) {
-					console.log(this.keys.length);
-					var key= this.keys[i];
-					if(key){
-
-					//if(key.description){
-						out= key.name + ' = '+key.description+'<br>';
-					//}						
-						}
-
-				}
-				alert(out);
-			}
 			break;
 		case 'menu':
 			if( this.$('escape').pressed){
@@ -301,7 +305,5 @@ if( !this.$('shift').pressed && this.$('shift').statusHasChanged()){
 		default:
 		break;
 	};
-	
-	//this.controls.movementSpeed
 	},
 });
